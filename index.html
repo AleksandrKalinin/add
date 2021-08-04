@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task 3 - addition and intersection</title>
+</head>
+<body>
+  <script type="text/javascript">
+    
+    //addition function
+    function add() {
+      let res = {};
+      for (let i = 0; i < arguments.length; i++) {
+        let item = arguments[i];
+        for (val in item) {
+          if (Object.keys(res).includes(val)) {
+            res[val] = res[val] + item[val]
+          } else {
+            res[val] = item[val]
+          }
+        }
+      }
+      return res;
+    }
+
+    //intersection function
+    function intersection(){
+      let res = [];
+      let item = arguments[0]; 
+      for (val in item) {
+        let count = 0;
+        for (let j = 1; j < arguments.length; j++) {
+          if (Object.keys(arguments[j]).includes(val)) {
+            count++;
+          }         
+        }
+        if (count === arguments.length - 1) {
+          res.push(val);
+        }         
+      }
+      return res;
+    }
+
+    let first = {a:11, b:2, c:3};
+    let second = {a:21, b:3};
+
+    console.log(add(first, first, first, second));
+    console.log(intersection(first, second));
+
+  </script>
+</body>
+</html>
